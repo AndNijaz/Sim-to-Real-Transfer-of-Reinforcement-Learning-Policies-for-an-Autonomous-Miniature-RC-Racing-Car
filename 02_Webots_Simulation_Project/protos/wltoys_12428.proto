@@ -1,0 +1,253 @@
+#VRML_SIM R2023b utf8
+
+PROTO WLtoys12428 [
+  field SFVec3f    translation 0 0 0.1
+  field SFRotation rotation    0 0 1 0
+  field SFString   name        "wltoys_12428"
+  field SFString   controller  "Camwithcar"
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    name IS name
+    controller IS controller
+    
+    children [
+      # --- I HAVE INCLUDED ALL YOUR CHILDREN NODES BELOW ---
+      Solid {
+        translation 0 0.13 0.07
+        rotation 1 0 0 0.2617996938995747
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.3 0.5 0.2
+              roughness 1
+            }
+            geometry Box {
+              size 0.046 0.14 0.025
+            }
+            castShadows FALSE
+          }
+        ]
+        name Battery
+        boundingObject Box {
+          size 0.046 0.14 0.025
+        }
+        physics Physics {
+          mass 0.25
+        }
+      }
+      JetsonNano {
+        translation 0 0.025 0.08
+        rotation 0 0 1 3.141592653589793
+        physics Physics {
+          mass 0.046
+        }
+      }
+      DEF oak_d_lite Solid {
+        translation 0 -0.05 0.09
+        rotation 0 -0.06982912769991385 0.9975589671416266 3.141592653589793
+        children [
+          Gyro {
+            rotation 0 0 1 1.7016996938995748
+          }
+          Accelerometer {
+            rotation 0 0 1 1.7017
+          }
+          InertialUnit {
+            rotation 0 0 1 1.7017
+            name imu
+          }
+          Camera {
+            translation 0 0.011 0
+            rotation 0 0 1 1.7016996938995748
+            name oak_d_rgb
+            fieldOfView 1.204
+            width 640
+            height 360
+          }
+          Camera {
+            translation 0.0375 0.011 0
+            rotation 0 0 1 1.7016996938995748
+            name oak_d_left
+            fieldOfView 1.204
+            width 640
+            height 360
+          }
+          Camera {
+            translation -0.0375 0.011 0
+            rotation 0 0 1 1.7016996938995748
+            name oak_d_right
+            fieldOfView 1.204
+            width 640
+            height 360
+          }
+          Transform {
+            translation -0.0407 0 -0.011
+            rotation 0 1 0 4.692820414042842e-06
+            scale 0.001 0.001 0.001
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.4 0.4 0.4
+                  roughness 1
+                }
+                geometry Mesh {
+                  url [OAK-D-LITE.dae]
+                }
+                castShadows FALSE
+              }
+            ]
+          }
+        ]
+        name solid(4)
+        boundingObject Box {
+          size 0.092 0.0175 0.028
+        }
+        physics Physics {
+          density -1
+          mass 0.061
+        }
+      }
+      # --- REAR WHEELS ---
+      DEF Rear_Left_Wheel HingeJoint {
+        jointParameters HingeJointParameters {
+          anchor 0.0975 0.162 -0.05
+          dampingConstant 0.2
+        }
+        device [ RotationalMotor { name drive_rl maxVelocity 350 maxTorque 2.5 } ]
+        endPoint Solid {
+          translation 0.0975 0.162 -0.05
+          rotation 0 0 -1 1.5708
+          children [
+            Transform {
+              scale 0.11 0.11 0.11
+              children [
+                Shape {
+                  appearance GenericTireAppearance {}
+                  geometry Mesh { url [Wheel.stl] }
+                  castShadows FALSE
+                }
+              ]
+            }
+          ]
+          boundingObject Pose {
+            translation 0 0.0233 0
+            rotation 1 0 0 -1.5708
+            children [ Shape { geometry Cylinder { height 0.04 radius 0.0527 } } ]
+          }
+          physics Physics { mass 0.1 }
+        }
+      }
+      DEF Rear_Right_Wheel HingeJoint {
+        jointParameters HingeJointParameters {
+          anchor -0.0975 0.162 -0.05
+          dampingConstant 0.2
+        }
+        device [ RotationalMotor { name drive_rr maxVelocity 350 maxTorque 2.5 } ]
+        endPoint Solid {
+          translation -0.0975 0.162 -0.05
+          rotation 0 0 1 1.5708
+          children [
+            Transform {
+              scale 0.11 0.11 0.11
+              children [
+                Shape {
+                  appearance GenericTireAppearance {}
+                  geometry Mesh { url [Wheel.stl] }
+                  castShadows FALSE
+                }
+              ]
+            }
+          ]
+          boundingObject Pose {
+            translation 0 0.0233 0
+            rotation 1 0 0 -1.5708
+            children [ Shape { geometry Cylinder { height 0.04 radius 0.0527 } } ]
+          }
+          physics Physics { mass 0.1 }
+        }
+      }
+      # --- FRONT STEERING WHEELS ---
+      DEF Front_Left_Wheel Hinge2Joint {
+        jointParameters HingeJointParameters { axis 0 0 1 anchor 0.0975 -0.17 -0.05 dampingConstant 0.2 }
+        jointParameters2 JointParameters { axis 1 0 0 }
+        device [ RotationalMotor { name steer_fl } ]
+        device2 [ RotationalMotor { name drive_fl maxVelocity 350 maxTorque 2.5 } ]
+        endPoint Solid {
+          translation 0.0975 -0.17 -0.05
+          rotation 0 0 -1 1.5708
+          children [
+            Transform {
+              scale 0.11 0.11 0.11
+              children [
+                Shape {
+                  appearance GenericTireAppearance {}
+                  geometry Mesh { url [Wheel.stl] }
+                  castShadows FALSE
+                }
+              ]
+            }
+          ]
+          boundingObject Pose {
+            translation 0 0.0233 0
+            rotation 1 0 0 -1.5708
+            children [ Shape { geometry Cylinder { height 0.04 radius 0.0527 } } ]
+          }
+          physics Physics { mass 0.1 }
+        }
+      }
+      DEF Front_Right_Wheel Hinge2Joint {
+        jointParameters HingeJointParameters { axis 0 0 1 anchor -0.0975 -0.17 -0.05 dampingConstant 0.2 }
+        jointParameters2 JointParameters { axis 1 0 0 }
+        device [ RotationalMotor { name steer_fr } ]
+        device2 [ RotationalMotor { name drive_fr maxVelocity 350 maxTorque 2.5 } ]
+        endPoint Solid {
+          translation -0.0975 -0.17 -0.05
+          rotation 0 0 -1 1.5708
+          children [
+            Transform {
+              rotation 0 0 1 3.14159
+              scale 0.11 0.11 0.11
+              children [
+                Shape {
+                  appearance GenericTireAppearance {}
+                  geometry Mesh { url [Wheel.stl] }
+                  castShadows FALSE
+                }
+              ]
+            }
+          ]
+          boundingObject Pose {
+            translation 0 -0.0223 0
+            rotation 1 0 0 -1.5708
+            children [ Shape { geometry Cylinder { height 0.04 radius 0.0527 } } ]
+          }
+          physics Physics { mass 0.1 }
+        }
+      }
+      # --- MAIN CHASSIS BODY ---
+      Transform {
+        scale 0.11 0.11 0.11
+        children [
+          Shape {
+            appearance PBRAppearance { baseColor 0.2 0.2 0.2 roughness 1 metalness 0 }
+            geometry Mesh { url [Body.stl] }
+            castShadows FALSE
+          }
+        ]
+      }
+    ]
+    
+    boundingObject Group {
+      children [
+        Pose { children [ Shape { geometry Box { size 0.16 0.42 0.14 } } ] }
+      ]
+    }
+    physics Physics {
+      mass 1.8
+      centerOfMass [ 0 0.015 0.035 ]
+    }
+  }
+}

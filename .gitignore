@@ -1,0 +1,66 @@
+# Large media files should be stored outside Git.
+*.[mM][pP]4
+*.[mM][mM]4[vV]
+*.[mM][oO][vV]
+*.[aA][vV][iI]
+*.[mM][kK][vV]
+*.[wW][mM][vV]
+*.[fF][lL][vV]
+*.[wW][eE][bB][mM]
+
+# Archives and compressed packages.
+*.zip
+*.rar
+*.7z
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.bz2
+*.xz
+
+# Keep smaller trained-model zip artifacts, but block known oversized files.
+!05_Trained_Models/**/*.zip
+!02_Webots_Simulation_Project/RL Models/*.zip
+05_Trained_Models/PPO/best_model_ppo.zip
+02_Webots_Simulation_Project/RL Models/best_model_ppo.zip
+
+# Known GitHub-unsafe oversized Webots mesh files.
+02_Webots_Simulation_Project/worlds/Red Rings.STL
+02_Webots_Simulation_Project/worlds/Blue Rings.STL
+
+# TensorBoard event logs can grow very large.
+events.out.tfevents*
+**/events.out.tfevents*
+
+# Python caches and local environments.
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+virtualenv/
+ENV/
+
+# OS and editor junk.
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+Icon?
+*~
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+~$*
+
+# Common local IDE settings.
+.idea/
+.vscode/

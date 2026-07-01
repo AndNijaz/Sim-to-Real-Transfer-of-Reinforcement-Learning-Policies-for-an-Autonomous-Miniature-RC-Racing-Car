@@ -1,0 +1,2 @@
+model,model_path,status,global_step,current_episode,current_episode_step,elapsed_total_s,elapsed_episode_s,latest_reward,latest_done,latest_termination_reason,latest_action_steering
+PPO,../../RL Models/best_model_ppo.zip,finished,17559,17,215,600.033,7.341,,,finished,

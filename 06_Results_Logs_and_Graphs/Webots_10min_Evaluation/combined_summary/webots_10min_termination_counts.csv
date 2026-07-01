@@ -1,0 +1,6 @@
+model,termination_reason,count
+PPO prototype,boundary_or_stuck,16
+PPO prototype,interrupted_or_time_limit,1
+SAC,interrupted_or_time_limit,1
+SAC,max_steps_timeout,10
+SAC,red_blue_boundary,2

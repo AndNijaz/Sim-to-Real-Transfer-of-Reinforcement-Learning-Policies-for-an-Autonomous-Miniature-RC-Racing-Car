@@ -1,0 +1,57 @@
+#VRML_SIM R2023b utf8
+
+PROTO OakDLite [
+  field SFVec3f    translation  0 0 0
+  field SFRotation rotation     0 0 1 0
+  field SFString   name         "oak_d_lite"
+]
+{
+  Solid {
+    translation IS translation
+    rotation IS rotation
+    name IS name
+    children [
+      Transform {
+        translation -0.0455 -0.014 -0.00875
+        scale 0.001 0.001 0.001
+        children [
+          Shape {
+            castShadows FALSE
+            appearance PBRAppearance {
+              baseColor 0.2 0.2 0.2
+              roughness 1.0
+              metalness 0.0
+            }
+            geometry Mesh {
+              url [
+                "meshes/OAK-D-LITE.dae"
+              ]
+            }
+          }
+        ]
+      }
+      Camera {
+        name "oak_d_rgb"
+        width 640
+        height 360
+        fieldOfView 1.204
+      }
+      InertialUnit {
+        name "imu"
+      }
+      Accelerometer {
+        name "accelerometer"
+      }
+      Gyro {
+        name "gyro"
+      }
+    ]
+    boundingObject Box {
+      size 0.091 0.028 0.0175
+    }
+    physics Physics {
+      density -1
+      mass 0.061
+    }
+  }
+}

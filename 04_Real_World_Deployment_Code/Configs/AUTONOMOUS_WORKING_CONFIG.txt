@@ -1,0 +1,25 @@
+Autonomous real track driving works.
+
+Working files:
+- run_real_sac_track_test_v1.py
+- real_camera_adapter.py
+- car_controller_v2.py
+
+Model:
+- /home/na-33/best_model_sac.zip
+
+Camera:
+- 160x80
+- frame_stack = 2
+- observation shape = (6, 80, 160)
+- normalize = True
+- channels_first = True
+
+Control:
+- SAC controls steering
+- throttle is fixed manually in script
+- emergency stop works
+- auto-disarm safety exists
+
+Known:
+- model throttle output is near zero, so fixed throttle is used for first successful real deployment

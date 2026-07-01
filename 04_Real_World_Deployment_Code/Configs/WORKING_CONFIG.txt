@@ -1,0 +1,19 @@
+Manual driving works on physical track.
+
+Working files:
+- manual_drive_tunable_v2.py
+- car_controller_v2.py
+
+Working settings:
+- max_steering = 1.00
+- MAX_THROTTLE = 1.00
+- THROTTLE_STEP = 0.05
+- SMOOTH = False
+- servo_left_us = 1800
+- servo_center_us = 1520
+- servo_right_us = 1200
+- esc_stop_us = 1498
+- esc_max_safe_us = 1600
+- controller max_throttle = 0.45
+
+Camera latency issue was caused by VNC preview, not actual camera capture.

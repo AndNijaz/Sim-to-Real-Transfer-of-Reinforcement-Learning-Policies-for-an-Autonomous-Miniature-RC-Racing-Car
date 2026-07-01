@@ -1,0 +1,2 @@
+model,model_path,status,global_step,current_episode,current_episode_step,elapsed_total_s,elapsed_episode_s,latest_reward,latest_done,latest_termination_reason,latest_action_steering,latest_action_throttle_raw,latest_x,latest_y
+SAC,../../RL Models/best_model_sac.zip,finished,16297,13,890,600.019,30.106,,,finished,,,,

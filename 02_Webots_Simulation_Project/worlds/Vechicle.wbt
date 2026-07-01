@@ -1,0 +1,394 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/vehicles/protos/abstract/GenericTireAppearance.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/devices/nvidia/protos/JetsonNano.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.18203961049584014 0.3653679062703416 0.9128898472861606 1.0976846701565728
+  position -0.49258171905617526 -0.8148100471910904 0.5297494820475064
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 4 4
+}
+DEF wltoys_12428 Robot {
+  translation 3.890819166397819e-09 -9.73807668530613e-09 0.10224816957726912
+  rotation -0.9996924896989305 -0.024797662029693936 4.4692446727368535e-05 0.0002283302829632656
+  children [
+    Solid {
+      translation 0 0.13 0.07
+      rotation 1 0 0 0.2617996938995747
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.3 0.5 0.2
+            roughness 1
+          }
+          geometry Box {
+            size 0.046 0.14 0.025
+          }
+          castShadows FALSE
+        }
+      ]
+      name "Battery"
+      boundingObject Box {
+        size 0.046 0.14 0.025
+      }
+      physics Physics {
+        mass 0.25
+      }
+    }
+    JetsonNano {
+      translation 0 0.025 0.08
+      rotation 0 0 1 3.141592653589793
+      physics Physics {
+        mass 0.046
+      }
+    }
+    DEF oak_d_lite Solid {
+      translation 0 -0.05 0.09
+      rotation 0 -0.06982912769991385 0.9975589671416266 3.141592653589793
+      children [
+        Gyro {
+          rotation 0 0 1 1.7016996938995748
+        }
+        Accelerometer {
+          rotation 0 0 1 1.7017
+        }
+        InertialUnit {
+          rotation 0 0 1 1.7017
+          name "imu"
+        }
+        Camera {
+          translation 0 0.011 0
+          rotation 0 0 1 1.7016996938995748
+          name "oak_d_rgb"
+          fieldOfView 1.204
+          width 640
+          height 360
+        }
+        Camera {
+          translation 0.0375 0.011 0
+          rotation 0 0 1 1.7016996938995748
+          name "oak_d_left"
+          fieldOfView 1.204
+          width 640
+          height 360
+        }
+        Camera {
+          translation -0.0375 0.011 0
+          rotation 0 0 1 1.7016996938995748
+          name "oak_d_right"
+          fieldOfView 1.204
+          width 640
+          height 360
+        }
+        Transform {
+          translation -0.0407 0 -0.011
+          rotation 0 1 0 4.692820414042842e-06
+          scale 0.001 0.001 0.001
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.4 0.4 0.4
+                roughness 1
+              }
+              geometry Mesh {
+                url [
+                  "OAK-D-LITE.dae"
+                ]
+              }
+              castShadows FALSE
+            }
+          ]
+        }
+      ]
+      name "solid(4)"
+      boundingObject Box {
+        size 0.092 0.0175 0.028
+      }
+      physics Physics {
+        density -1
+        mass 0.061
+      }
+    }
+    DEF Rear_Left_Wheel HingeJoint {
+      jointParameters HingeJointParameters {
+        position 5.601914459331463e-07
+        anchor 0.0975 0.162 -0.05
+        dampingConstant 0.2
+      }
+      device [
+        RotationalMotor {
+          name "drive_rl"
+          maxVelocity 350
+          maxTorque 2.5
+        }
+      ]
+      endPoint Solid {
+        translation 0.0975 0.162 -0.05
+        rotation 2.8009477985652775e-07 2.800957229665585e-07 -0.9999999999999215 1.5707996938996531
+        children [
+          Transform {
+            scale 0.11 0.11 0.11
+            children [
+              Shape {
+                appearance GenericTireAppearance {
+                }
+                geometry Mesh {
+                  url [
+                    "Wheel.stl"
+                  ]
+                }
+                castShadows FALSE
+              }
+            ]
+          }
+        ]
+        name "solid(2)"
+        boundingObject Pose {
+          translation 0 0.0233 0
+          rotation 1 0 0 -1.5707996938995747
+          children [
+            Shape {
+              geometry Cylinder {
+                height 0.04
+                radius 0.0527
+              }
+            }
+          ]
+        }
+        physics Physics {
+          mass 0.1
+          damping Damping {
+          }
+        }
+      }
+    }
+    DEF Rear_Right_Wheel HingeJoint {
+      jointParameters HingeJointParameters {
+        position 2.3652591789959394e-07
+        anchor -0.0975 0.162 -0.05
+        dampingConstant 0.2
+      }
+      device [
+        RotationalMotor {
+          name "drive_rr"
+          maxVelocity 350
+          maxTorque 2.5
+        }
+      ]
+      endPoint Solid {
+        translation -0.0975 0.162 -0.05
+        rotation 1.1826256074670394e-07 -1.18262958949796e-07 0.999999999999986 1.5707996938995885
+        children [
+          Transform {
+            scale 0.11 0.11 0.11
+            children [
+              Shape {
+                appearance GenericTireAppearance {
+                }
+                geometry Mesh {
+                  url [
+                    "Wheel.stl"
+                  ]
+                }
+                castShadows FALSE
+              }
+            ]
+          }
+        ]
+        name "solid(3)"
+        boundingObject Pose {
+          translation 0 0.0233 0
+          rotation 1 0 0 -1.5707996938995747
+          children [
+            Shape {
+              geometry Cylinder {
+                height 0.04
+                radius 0.0527
+              }
+            }
+          ]
+        }
+        physics Physics {
+          mass 0.1
+          damping Damping {
+          }
+        }
+      }
+    }
+    DEF Front_Left_Wheel Hinge2Joint {
+      jointParameters HingeJointParameters {
+        position -2.175695124285359e-11
+        axis 0 0 1
+        anchor 0.0975 -0.17 -0.05
+        dampingConstant 0.2
+      }
+      jointParameters2 JointParameters {
+        position 1.0261311460053066e-07
+        axis 1 0 0
+      }
+      device [
+        RotationalMotor {
+          name "steer_fl"
+        }
+      ]
+      device2 [
+        RotationalMotor {
+          name "drive_fl"
+          maxVelocity 350
+          maxTorque 2.5
+        }
+      ]
+      endPoint Solid {
+        translation 0.0975 -0.17 -0.05
+        rotation 5.080077054881014e-08 5.080094160174043e-08 -0.9999999999999976 1.5707996939646942
+        children [
+          Transform {
+            scale 0.11 0.11 0.11
+            children [
+              Shape {
+                appearance GenericTireAppearance {
+                }
+                geometry Mesh {
+                  url [
+                    "Wheel.stl"
+                  ]
+                }
+                castShadows FALSE
+              }
+            ]
+          }
+        ]
+        boundingObject Pose {
+          translation 0 0.0233 0
+          rotation 1 0 0 -1.5707996938995747
+          children [
+            Shape {
+              geometry Cylinder {
+                height 0.04
+                radius 0.0527
+              }
+            }
+          ]
+        }
+        physics Physics {
+          mass 0.1
+          damping Damping {
+          }
+        }
+      }
+    }
+    DEF Front_Right_Wheel Hinge2Joint {
+      jointParameters HingeJointParameters {
+        position 2.091431616239443e-11
+        axis 0 0 1
+        anchor -0.0975 -0.17 -0.05
+        dampingConstant 0.2
+      }
+      jointParameters2 JointParameters {
+        position 2.1683390666816836e-07
+        axis 1 0 0
+      }
+      device [
+        RotationalMotor {
+          name "steer_fr"
+        }
+      ]
+      device2 [
+        RotationalMotor {
+          name "drive_fr"
+          maxVelocity 350
+          maxTorque 2.5
+        }
+      ]
+      endPoint Solid {
+        translation -0.0975 -0.17 -0.05
+        rotation 1.0801411515406515e-07 1.0801447884721174e-07 -0.9999999999999885 1.5707996938367186
+        children [
+          Transform {
+            rotation 0 0 1 3.141592653589793
+            scale 0.11 0.11 0.11
+            children [
+              Shape {
+                appearance GenericTireAppearance {
+                }
+                geometry Mesh {
+                  url [
+                    "Wheel.stl"
+                  ]
+                }
+                castShadows FALSE
+              }
+            ]
+          }
+        ]
+        name "solid(1)"
+        boundingObject Pose {
+          translation 0 -0.0223 0
+          rotation 1 0 0 -1.5707996938995747
+          children [
+            Shape {
+              geometry Cylinder {
+                height 0.04
+                radius 0.0527
+              }
+            }
+          ]
+        }
+        physics Physics {
+          mass 0.1
+          damping Damping {
+          }
+        }
+      }
+    }
+    Transform {
+      scale 0.11 0.11 0.11
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 0.2 0.2
+            roughness 1
+            metalness 0
+          }
+          geometry Mesh {
+            url [
+              "Body.stl"
+            ]
+          }
+          castShadows FALSE
+        }
+      ]
+    }
+  ]
+  boundingObject Group {
+    children [
+      Pose {
+        children [
+          Shape {
+            geometry Box {
+              size 0.16 0.42 0.14
+            }
+          }
+        ]
+      }
+    ]
+  }
+  physics Physics {
+    mass 1.8
+    centerOfMass [
+      0 0.015 0.035
+    ]
+  }
+  controller "Camwithcar"
+}
